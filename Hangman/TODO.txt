@@ -1,2 +1,23 @@
-adding external txt file for scoreboard
+﻿adding external txt file for scoreboard
 fixing scoreboard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+get random word bug ----> FIXED
+
+help() bug  - при използване на  help има проблем с поведението ----> FIXED

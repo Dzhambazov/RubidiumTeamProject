@@ -14,7 +14,7 @@ namespace HangMan
 
         static void Main()
         {
-            Besenka game = new Besenka();
+            Hangman game = new Hangman();
 
             Console.WriteLine("Welcome to Hangman");
             Console.WriteLine("Use 'top' to view the top scoreboard," +
@@ -71,6 +71,7 @@ namespace HangMan
                 Console.Write("enter a letter or command: ");
                 input = Console.ReadLine();
             }
+             
 
             Console.WriteLine("Goodby");
         }

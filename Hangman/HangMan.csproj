@@ -57,7 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Besenka.cs" />
+    <Compile Include="Hangman.cs" />
     <Compile Include="Interface.cs" />
     <Compile Include="ScoreBoardPosition.cs" />
   </ItemGroup>

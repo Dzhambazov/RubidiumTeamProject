@@ -10,25 +10,25 @@ namespace HangMan
     /// Премахвам ненужните празни редове и добавям празни редове, където са нужни.
     /// Преименувам някой променливи с по-подходящи имена.(scoreBoard -> scoreBoardCurrentPosition, методите съм преименувал да започват с главна буква)
     /// </summary>
-    class Besenka
+    class Hangman
     {
-        static ScoreBoardPosition[] scoreBoardCurrentPosition = new ScoreBoardPosition[5];
-        static private Random random = new Random();
-        static private string[] words = {"computer", "programmer", "software", "debugger", "compiler", 
+       ScoreBoardPosition[] scoreBoardCurrentPosition = new ScoreBoardPosition[5];
+       private Random random = new Random();
+       private string[] words = {"computer", "programmer", "software", "debugger", "compiler", 
                                          "developer", "algorithm", "array", "method", "variable"};
-        private string currentWord;
+        private string wordToGuess;
         private char[] playersWord;
         private bool cheated;
-
         int mistakes;
         int lettersLeft;
 
-        public Besenka()
+        public Hangman()
         {
-            int wordNumber = random.Next(0, 10);
+            //get random word bug fixed
+            int wordNumber = random.Next(0, words.Count());
 
-            this.currentWord = words[wordNumber];
-            this.playersWord = new char[currentWord.Length];
+            this.wordToGuess = words[wordNumber];
+            this.playersWord = new char[wordToGuess.Length];
 
             for (int i = 0; i < playersWord.Length; i++)
             {
@@ -54,36 +54,32 @@ namespace HangMan
             {
                 Console.Write(letter + " ");
             }
-
             Console.WriteLine();
         }
 
+        // help bug fixed
         public void Help()
         {
             int toBeRevealed = Array.IndexOf(playersWord, '_');
-            playersWord[toBeRevealed] = currentWord[toBeRevealed];
-
+            playersWord[toBeRevealed] = wordToGuess[toBeRevealed];
             this.cheated = true;
+            this.lettersLeft--;
         }
 
         public bool Guess(char letter)
         {
-            int guessed = 0;
+            int guessedLettersCount = 0;
 
-            for (int i = 0; i < currentWord.Length; i++)
+            if (IsCharGuessed(letter))
             {
-                if (currentWord[i] == letter && playersWord[i] == '_')
-                {
-                    guessed++;
-                    playersWord[i] = letter;
-                }
+                guessedLettersCount++;
             }
 
-            if (guessed > 0)
+            if (guessedLettersCount > 0)
             {
-                this.lettersLeft = this.lettersLeft - guessed;
+                this.lettersLeft -= guessedLettersCount;
 
-                Console.WriteLine("you guessed {0} letters", guessed);
+                Console.WriteLine("you guessed {0} letters", guessedLettersCount);
 
                 if (this.lettersLeft == 0)
                 {
@@ -99,31 +95,49 @@ namespace HangMan
             return false;
         }
 
+        /// <summary>
+        /// Checks if the secred word contains the character we guessed
+        /// </summary>
+        /// <param name="letter">Character represented our guess letter</param>
+        /// <returns>Returns true if character has been fond in the word on blank space</returns>
+        private bool IsCharGuessed(char letter)
+        {
+            for (int i = 0; i < wordToGuess.Length; i++)
+            {
+                if (wordToGuess[i] == letter && playersWord[i] == '_')
+                {
+                    playersWord[i] = letter;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public void End()
         {
             Console.WriteLine("Congratulations! You guessed the word");
 
-            if (this.cheated == false)
+            if (!this.cheated)
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    if (scoreBoardCurrentPosition[i].Name == string.Empty ||
-                        this.mistakes < scoreBoardCurrentPosition[i].Mistakes)
+                    if (scoreBoardCurrentPosition[i].PlayerName == string.Empty ||
+                        this.mistakes < scoreBoardCurrentPosition[i].MistakesCount)
                     {
                         Console.WriteLine("Congratulations! You made the scoreboard");
                         Console.Write("Enter your name: ");
 
-                        string playersName = Console.ReadLine();
+                        string playerName = Console.ReadLine();
 
-                        if (scoreBoardCurrentPosition[i].Name == string.Empty)
+                        if (scoreBoardCurrentPosition[i].PlayerName == string.Empty)
                         {
-                            scoreBoardCurrentPosition[i].Name = playersName;
-                            scoreBoardCurrentPosition[i].Mistakes = this.mistakes;
+                            scoreBoardCurrentPosition[i].PlayerName = playerName;
+                            scoreBoardCurrentPosition[i].MistakesCount = this.mistakes;
                         }
                         else
                         {
-                            scoreBoardCurrentPosition[4].Name = playersName;
-                            scoreBoardCurrentPosition[4].Mistakes = this.mistakes;
+                            scoreBoardCurrentPosition[4].PlayerName = playerName;
+                            scoreBoardCurrentPosition[4].MistakesCount = this.mistakes;
                         }
 
                         Array.Sort(scoreBoardCurrentPosition);
@@ -145,7 +159,7 @@ namespace HangMan
             {
                 if (scoreBoardCurrentPosition[i] != default(ScoreBoardPosition))
                 {
-                    Console.WriteLine("{0} --> {1} - {2} mistakes", i + 1, scoreBoardCurrentPosition[i].Name, scoreBoardCurrentPosition[i].Mistakes);
+                    Console.WriteLine("{0} --> {1} - {2} mistakes", i + 1, scoreBoardCurrentPosition[i].PlayerName, scoreBoardCurrentPosition[i].MistakesCount);
                 }
             }
 
@@ -154,10 +168,11 @@ namespace HangMan
 
         public void Restart()
         {
-            int wordNumber = random.Next(0, 11);
+            //get random word bug fixed
+            int wordNumber = random.Next(0, words.Count());
 
-            this.currentWord = words[wordNumber];
-            this.playersWord = new char[currentWord.Length];
+            this.wordToGuess = words[wordNumber];
+            this.playersWord = new char[wordToGuess.Length];
 
             for (int i = 0; i < playersWord.Length; i++)
             {
