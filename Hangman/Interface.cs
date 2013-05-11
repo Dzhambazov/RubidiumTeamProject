@@ -5,30 +5,36 @@ using System.Text;
 
 namespace HangMan
 {
+    /// <summary>
+    /// Премахвам ненужните празни редове и добавям празни редове, където са нужни.
+    /// </summary>
     class Interface
     {
         Random random = new Random();
+
         static void Main()
         {
-            besenka game = new besenka();
+            Besenka game = new Besenka();
+
             Console.WriteLine("Welcome to Hangman");
-            Console.WriteLine("Use 'top' to view the top scoreboard," + 
-            "'restart' to start a new game, \n'help' to cheat and 'exit' to quit the game.");
-            game.printWord();
+            Console.WriteLine("Use 'top' to view the top scoreboard," +
+                              "'restart' to start a new game, \n'help' to cheat and 'exit' to quit the game.");
+
+            game.PrintWord();
             Console.Write("enter a letter or command: ");
             string input = Console.ReadLine();
-            while (input!="exit")
+
+            while (input != "exit")
             {
-                if (input.Length == 1) 
+                if (input.Length == 1)
                 {
-
-
                     bool flag;
-                    flag=game.Guess(input[0]);
-                    if (flag == true) 
+                    flag = game.Guess(input[0]);
+
+                    if (flag == true)
                     {
                         game.End();
-                        game.restart();
+                        game.Restart();
                     }
                 }
                 else
@@ -42,12 +48,12 @@ namespace HangMan
                             }
                         case "help":
                             {
-                                game.help();
+                                game.Help();
                                 break;
                             }
-                        case "restart": 
+                        case "restart":
                             {
-                                game.restart();
+                                game.Restart();
                                 break;
                             }
                         default:
@@ -56,14 +62,16 @@ namespace HangMan
                                 break;
                             }
                     }
-                        
+
                 }
+
                 Console.WriteLine("Use 'top' to view the top scoreboard," +
-                    "'restart' to start a new game, \n'help' to cheat and 'exit' to quit the game.");
-                game.printWord();
+                                  "'restart' to start a new game, \n'help' to cheat and 'exit' to quit the game.");
+                game.PrintWord();
                 Console.Write("enter a letter or command: ");
                 input = Console.ReadLine();
             }
+
             Console.WriteLine("Goodby");
         }
     }

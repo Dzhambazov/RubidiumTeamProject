@@ -6,144 +6,167 @@ using System.Text;
 namespace HangMan
 {
 
-	// bolime glavata. vcera pih egati gadnoto vino. nikoga poveche vino i vodka, obeshtavammmmmmm@@$#$%#&^#
-    class besenka
+    /// <summary>
+    /// Премахвам ненужните празни редове и добавям празни редове, където са нужни.
+    /// Преименувам някой променливи с по-подходящи имена.(scoreBoard -> scoreBoardCurrentPosition, методите съм преименувал да започват с главна буква)
+    /// </summary>
+    class Besenka
     {
-        static ScoreBoardPosition[] scoreBoard = new ScoreBoardPosition[5];
+        static ScoreBoardPosition[] scoreBoardCurrentPosition = new ScoreBoardPosition[5];
         static private Random random = new Random();
         static private string[] words = {"computer", "programmer", "software", "debugger", "compiler", 
-                                            "developer", "algorithm", "array", "method", "variable"};
+                                         "developer", "algorithm", "array", "method", "variable"};
         private string currentWord;
-        private char[] PlayersWord;
+        private char[] playersWord;
         private bool cheated;
+
         int mistakes;
         int lettersLeft;
 
-        public besenka() 
+        public Besenka()
         {
             int wordNumber = random.Next(0, 10);
+
             this.currentWord = words[wordNumber];
-            this.PlayersWord = new char[currentWord.Length];
-            for (int i = 0; i < PlayersWord.Length; i++)
+            this.playersWord = new char[currentWord.Length];
+
+            for (int i = 0; i < playersWord.Length; i++)
             {
-                PlayersWord[i] = '_';
+                playersWord[i] = '_';
             }
+
             this.cheated = false;
             this.mistakes = 0;
-            this.lettersLeft = PlayersWord.Length;
+            this.lettersLeft = playersWord.Length;
+
             for (int i = 0; i < 5; i++)
             {
-                scoreBoard[i] = new ScoreBoardPosition(string.Empty, 999);
+                scoreBoardCurrentPosition[i] = new ScoreBoardPosition(string.Empty, 999);
             }
         }
 
-        public void printWord() 
+        public void PrintWord()
         {
             Console.WriteLine();
             Console.Write("The secret word is:");
-            foreach (var letter in PlayersWord)
+
+            foreach (var letter in playersWord)
             {
-                Console.Write(letter+" ");
+                Console.Write(letter + " ");
             }
+
             Console.WriteLine();
         }
-        public void help ()
+
+        public void Help()
         {
-            int toBeRevealed;
-            toBeRevealed=Array.IndexOf(PlayersWord, '_');
-            PlayersWord[toBeRevealed] = currentWord[toBeRevealed];
+            int toBeRevealed = Array.IndexOf(playersWord, '_');
+            playersWord[toBeRevealed] = currentWord[toBeRevealed];
+
             this.cheated = true;
         }
-        public bool Guess(char letter) 
+
+        public bool Guess(char letter)
         {
             int guessed = 0;
+
             for (int i = 0; i < currentWord.Length; i++)
             {
-                if (currentWord[i] == letter && PlayersWord[i]=='_') 
+                if (currentWord[i] == letter && playersWord[i] == '_')
                 {
                     guessed++;
-                    PlayersWord[i] = letter;
+                    playersWord[i] = letter;
                 }
             }
+
             if (guessed > 0)
             {
                 this.lettersLeft = this.lettersLeft - guessed;
+
                 Console.WriteLine("you guessed {0} letters", guessed);
+
                 if (this.lettersLeft == 0)
                 {
                     return true;
                 }
             }
-            else 
+            else
             {
                 Console.WriteLine("letter not found");
                 this.mistakes++;
             }
+
             return false;
         }
-        public void End() 
+
+        public void End()
         {
             Console.WriteLine("Congratulations! You guessed the word");
+
             if (this.cheated == false)
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    if (scoreBoard[i].Name==string.Empty || this.mistakes < scoreBoard[i].Mistakes)
+                    if (scoreBoardCurrentPosition[i].Name == string.Empty ||
+                        this.mistakes < scoreBoardCurrentPosition[i].Mistakes)
                     {
                         Console.WriteLine("Congratulations! You made the scoreboard");
                         Console.Write("Enter your name: ");
+
                         string playersName = Console.ReadLine();
-                        if (scoreBoard[i].Name == string.Empty)
+
+                        if (scoreBoardCurrentPosition[i].Name == string.Empty)
                         {
-                            scoreBoard[i].Name = playersName;
-                            scoreBoard[i].Mistakes = this.mistakes;
-
-
-
+                            scoreBoardCurrentPosition[i].Name = playersName;
+                            scoreBoardCurrentPosition[i].Mistakes = this.mistakes;
                         }
                         else
                         {
-                            scoreBoard[4].Name = playersName;
-                            scoreBoard[4].Mistakes = this.mistakes;
+                            scoreBoardCurrentPosition[4].Name = playersName;
+                            scoreBoardCurrentPosition[4].Mistakes = this.mistakes;
                         }
-                        Array.Sort(scoreBoard);
+
+                        Array.Sort(scoreBoardCurrentPosition);
                         return;
                     }
                 }
             }
-            else 
+            else
             {
                 Console.WriteLine("You cheated");
             }
         }
 
-        public void ShowScoreboard() 
+        public void ShowScoreboard()
         {
             Console.WriteLine();
-            for (int i = 0; i < scoreBoard.Length; i++)
+
+            for (int i = 0; i < scoreBoardCurrentPosition.Length; i++)
             {
-                if (scoreBoard[i] != default(ScoreBoardPosition))
+                if (scoreBoardCurrentPosition[i] != default(ScoreBoardPosition))
                 {
-
-
-                    Console.WriteLine("{0} --> {1} - {2} mistakes", i+1, scoreBoard[i].Name, scoreBoard[i].Mistakes);
+                    Console.WriteLine("{0} --> {1} - {2} mistakes", i + 1, scoreBoardCurrentPosition[i].Name, scoreBoardCurrentPosition[i].Mistakes);
                 }
             }
+
             Console.WriteLine();
         }
 
-        public void restart() 
+        public void Restart()
         {
             int wordNumber = random.Next(0, 11);
+
             this.currentWord = words[wordNumber];
-            this.PlayersWord = new char[currentWord.Length];
-            for (int i = 0; i < PlayersWord.Length; i++)
+            this.playersWord = new char[currentWord.Length];
+
+            for (int i = 0; i < playersWord.Length; i++)
             {
-                PlayersWord[i] = '_';
+                playersWord[i] = '_';
             }
+
             this.cheated = false;
             this.mistakes = 0;
-            this.lettersLeft = PlayersWord.Length;
+            this.lettersLeft = playersWord.Length;
         }
     }
 }
