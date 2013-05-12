@@ -17,9 +17,7 @@ namespace HangMan
             Hangman game = new Hangman();
 
             Console.WriteLine("Welcome to Hangman");
-            Console.WriteLine("Use 'top' to view the top scoreboard," +
-                              "'restart' to start a new game, \n'help' to cheat and 'exit' to quit the game.");
-
+            PrintGameGuide();
             game.PrintWord();
             Console.Write("enter a letter or command: ");
             string input = Console.ReadLine();
@@ -28,10 +26,10 @@ namespace HangMan
             {
                 if (input.Length == 1)
                 {
-                    bool flag;
-                    flag = game.Guess(input[0]);
+                    bool wordGuessed = false;
+                    wordGuessed = game.Guess(input[0]);
 
-                    if (flag == true)
+                    if (wordGuessed)
                     {
                         game.End();
                         game.Restart();
@@ -62,18 +60,25 @@ namespace HangMan
                                 break;
                             }
                     }
-
                 }
 
-                Console.WriteLine("Use 'top' to view the top scoreboard," +
-                                  "'restart' to start a new game, \n'help' to cheat and 'exit' to quit the game.");
+                PrintGameGuide();
+                 
                 game.PrintWord();
                 Console.Write("enter a letter or command: ");
                 input = Console.ReadLine();
             }
-             
-
             Console.WriteLine("Goodby");
         }
+
+        /// <summary>
+        /// Generate a new method cause of code repeate
+        /// </summary>
+        public static void PrintGameGuide()
+        {
+            Console.WriteLine("Use 'top' to view the top scoreboard," +
+                                  "'restart' to start a new game, \n'help' to cheat and 'exit' to quit the game.");
+        }
+
     }
 }

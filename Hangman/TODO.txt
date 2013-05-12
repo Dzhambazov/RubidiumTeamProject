@@ -1,6 +1,6 @@
 ﻿adding external txt file for scoreboard
 fixing scoreboard
-
+get words from external file;
 
 
 
