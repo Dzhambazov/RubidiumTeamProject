@@ -14,6 +14,7 @@ namespace HangMan
     {
        ScoreBoardPosition[] scoreBoardCurrentPosition = new ScoreBoardPosition[5];
        private Random random = new Random();
+      // private string[] words = {"debugger"};
        private string[] words = {"computer", "programmer", "software", "debugger", "compiler", 
                                          "developer", "algorithm", "array", "method", "variable"};
         private string wordToGuess;
@@ -45,6 +46,92 @@ namespace HangMan
             }
         }
 
+        public static void PrintGameGuide()
+        {
+            Console.WriteLine("Use 'top' to view the top scoreboard," +
+                                  "'restart' to start a new game, \n'help' to cheat and 'exit' to quit the game.");
+        }
+
+        public void Play()
+        {
+            Console.WriteLine("Welcome to Hangman");
+            PrintGameGuide();
+            PrintWord();
+            string input = GetInput();
+
+            while (input != "exit")
+            {
+                CheckInput(input);
+                PrintGameGuide();
+                PrintWord();
+                input = GetInput();
+            }
+            Console.WriteLine("Goodby");
+        }
+
+        /// <summary>
+        /// check for letter in searched word and execute commands
+        /// </summary>
+        /// <param name="input">Get input from console representing letter to check or execute command</param>
+        private void CheckInput(string input)
+        {
+            if (input.Length == 1)
+            {
+                bool wordGuessed = false;
+                wordGuessed = Guess(input[0]);
+
+                if (wordGuessed)
+                {
+                    End();
+                    Restart();
+                }
+            }
+            else
+            {
+                ExecuteCommand(input);
+            }
+        }
+
+        //added get input method
+        private static string GetInput()
+        {
+            Console.Write("enter a letter or command: ");
+            string input = Console.ReadLine();
+            return input;
+        }
+
+        private void ExecuteCommand(string input)
+        {
+            switch (input)
+            {
+                case "top":
+                    {
+                        ShowScoreboard();
+                        break;
+                    }
+                case "help":
+                    {
+                        Help();
+                        break;
+                    }
+                case "restart":
+                    {
+                        Restart();
+                        break;
+                    }
+                default:
+                    {
+                        Console.WriteLine("invalid command");
+                        break;
+                    }
+            }
+        }
+
+
+
+
+
+
         public void PrintWord()
         {
             Console.WriteLine();
@@ -69,12 +156,8 @@ namespace HangMan
         public bool Guess(char letter)
         {
             int guessedLettersCount = 0;
-
-            if (IsCharGuessed(letter))
-            {
-                guessedLettersCount++;
-            }
-
+            guessedLettersCount += CharsGuessed(letter);
+            
             if (guessedLettersCount > 0)
             {
                 this.lettersLeft -= guessedLettersCount;
@@ -99,18 +182,20 @@ namespace HangMan
         /// Checks if the secred word contains the character we guessed
         /// </summary>
         /// <param name="letter">Character represented our guess letter</param>
-        /// <returns>Returns true if character has been fond in the word on blank space</returns>
-        private bool IsCharGuessed(char letter)
+        /// <returns>Returns true if character has been fond in the word on blank space</returns>/
+        /// bug fixed - before: show the first found letter only,  after: show all found letters
+        private int CharsGuessed(char letter)
         {
+            int counter = 0;
             for (int i = 0; i < wordToGuess.Length; i++)
             {
                 if (wordToGuess[i] == letter && playersWord[i] == '_')
                 {
                     playersWord[i] = letter;
-                    return true;
+                    counter++;
                 }
             }
-            return false;
+            return counter;
         }
 
         public void End()

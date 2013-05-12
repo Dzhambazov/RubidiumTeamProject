@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hangman.cs" />
-    <Compile Include="Interface.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="ScoreBoardPosition.cs" />
   </ItemGroup>
   <ItemGroup>
