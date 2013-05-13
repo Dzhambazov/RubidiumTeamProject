@@ -62,27 +62,21 @@ namespace HangMan
             }
         }
 
-        public static void PrintGameGuide()
-        {
-            Console.WriteLine("Use 'top' to view the top scoreboard," +
-                                  "'restart' to start a new game, \n'help' to cheat and 'exit' to quit the game.");
-        }
-
         public void Play()
         {
             Console.WriteLine("Welcome to Hangman");
-            PrintGameGuide();
+            Print.GameGuide();
             PrintWord();
             string input = GetInput();
 
             while (input != "exit")
             {
                 CheckInput(input);
-                PrintGameGuide();
+                Print.GameGuide();
                 PrintWord();
                 input = GetInput();
             }
-            Console.WriteLine("Goodby");
+            Print.GoodBye();
         }
 
         /// <summary>
@@ -111,7 +105,7 @@ namespace HangMan
         //added get input method
         private static string GetInput()
         {
-            Console.Write("enter a letter or command: ");
+            Print.EnterLetterOrCommand();
             string input = Console.ReadLine();
             return input;
         }
@@ -137,7 +131,7 @@ namespace HangMan
                     }
                 default:
                     {
-                        Console.WriteLine("invalid command");
+                        Print.InvalidCommand();
                         break;
                     }
             }
@@ -145,9 +139,7 @@ namespace HangMan
 
         public void PrintWord()
         {
-            Console.WriteLine();
-            Console.Write("The secret word is:");
-
+            Print.WordIs();
             foreach (var letter in playersWord)
             {
                 Console.Write(letter + " ");
@@ -211,8 +203,7 @@ namespace HangMan
 
         public void End()
         {
-            Console.WriteLine("Congratulations! You guessed the word");
-
+            Print.GuessedWord();
             if (!this.cheated)
             {
                 for (int i = 0; i < 5; i++)
@@ -220,9 +211,7 @@ namespace HangMan
                     if (scoreBoardCurrentPosition[i].PlayerName == string.Empty ||
                         this.mistakes < scoreBoardCurrentPosition[i].MistakesCount)
                     {
-                        Console.WriteLine("Congratulations! You made the scoreboard");
-                        Console.Write("Enter your name: ");
-
+                        Print.MadeAScoreboard();
                         string playerName = Console.ReadLine();
 
                         if (scoreBoardCurrentPosition[i].PlayerName == string.Empty)
@@ -243,7 +232,7 @@ namespace HangMan
             }
             else
             {
-                Console.WriteLine("You cheated");
+                Print.Cheated();
             }
         }
 
