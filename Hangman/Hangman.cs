@@ -12,8 +12,9 @@ namespace HangMan
     /// </summary>
     class Hangman
     {
+
        ScoreBoardPosition[] scoreBoardCurrentPosition = new ScoreBoardPosition[5];
-       private Random random = new Random();
+       //private Random random = new Random();
       // private string[] words = {"debugger"};
        private string[] words = {"computer", "programmer", "software", "debugger", "compiler", 
                                          "developer", "algorithm", "array", "method", "variable"};
@@ -26,7 +27,7 @@ namespace HangMan
         public Hangman()
         {
             //get random word bug fixed
-            int wordNumber = random.Next(0, words.Count());
+            int wordNumber = RandomGenerator.randomGenerator.Next(0, words.Count());
 
             this.wordToGuess = words[wordNumber];
             this.playersWord = new char[wordToGuess.Length];
@@ -126,11 +127,6 @@ namespace HangMan
                     }
             }
         }
-
-
-
-
-
 
         public void PrintWord()
         {
@@ -254,7 +250,7 @@ namespace HangMan
         public void Restart()
         {
             //get random word bug fixed
-            int wordNumber = random.Next(0, words.Count());
+            int wordNumber = RandomGenerator.randomGenerator.Next(0, words.Count());
 
             this.wordToGuess = words[wordNumber];
             this.playersWord = new char[wordToGuess.Length];
