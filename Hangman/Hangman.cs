@@ -14,7 +14,6 @@ namespace HangMan
     {
 
        ScoreBoardPosition[] scoreBoardCurrentPosition = new ScoreBoardPosition[5];
-       //private Random random = new Random();
       // private string[] words = {"debugger"};
        private string[] words = {"computer", "programmer", "software", "debugger", "compiler", 
                                          "developer", "algorithm", "array", "method", "variable"};
@@ -27,15 +26,8 @@ namespace HangMan
         public Hangman()
         {
             //get random word bug fixed
-            int wordNumber = RandomGenerator.randomGenerator.Next(0, words.Count());
-
-            this.wordToGuess = words[wordNumber];
-            this.playersWord = new char[wordToGuess.Length];
-
-            for (int i = 0; i < playersWord.Length; i++)
-            {
-                playersWord[i] = '_';
-            }
+            GenerateWord();
+            GeneratePlayersWord();
 
             this.cheated = false;
             this.mistakes = 0;
@@ -44,6 +36,29 @@ namespace HangMan
             for (int i = 0; i < 5; i++)
             {
                 scoreBoardCurrentPosition[i] = new ScoreBoardPosition(string.Empty, 999);
+            }
+        }
+
+        /// <summary>
+        /// Method for generating word, functionality extracted from the constructor
+        /// </summary>
+        private void GenerateWord()
+        {
+            int wordNumber = RandomGenerator.randomGenerator.Next(0, words.Count());
+            this.wordToGuess = words[wordNumber];
+        }
+
+
+        /// <summary>
+        /// Method for generating players word, functionality extracted from the constructor
+        /// </summary>
+        private void GeneratePlayersWord()
+        {
+            this.playersWord = new char[wordToGuess.Length];
+
+            for (int i = 0; i < playersWord.Length; i++)
+            {
+                playersWord[i] = '_';
             }
         }
 
