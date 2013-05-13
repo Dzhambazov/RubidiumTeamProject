@@ -1,22 +1,9 @@
-﻿adding external txt file for scoreboard
-fixing scoreboard
-get words from external file;
-test commit
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+adding external txt file for scoreboard --> done
+fixing scoreboard ---> done
+get words from external file ---> done
 get random word bug ----> FIXED
-
 help() bug  - при използване на  help има проблем с поведението ----> FIXED
+
+
+
+UNIT TESTING !
