@@ -52,7 +52,7 @@ namespace HangMan
 
         public void Play()
         {
-            Restart();
+            InitialiseNewGame();
             Print.Welcome();
             Print.GameGuide();
             PrintWord();
@@ -114,7 +114,7 @@ namespace HangMan
                     }
                 case "restart":
                     {
-                        Restart();
+                        InitialiseNewGame();
                         break;
                     }
                 default:
@@ -226,7 +226,7 @@ namespace HangMan
             {
                 Print.Cheated();
             }
-            Restart();
+            InitialiseNewGame();
         }
 
         public void ShowScoreboard()
@@ -244,7 +244,7 @@ namespace HangMan
             Console.WriteLine();
         }
 
-        public void Restart()
+        public void InitialiseNewGame()
         {
             //get random word bug fixed
             GenerateWord();
