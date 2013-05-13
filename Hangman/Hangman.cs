@@ -53,7 +53,7 @@ namespace HangMan
         public void Play()
         {
             Restart();
-            Console.WriteLine("Welcome to Hangman");
+            Print.Welcome();
             Print.GameGuide();
             PrintWord();
             string input = GetInput();
@@ -166,7 +166,7 @@ namespace HangMan
             }
             else
             {
-                Console.WriteLine("letter not found");
+                Print.LetterNotFound();
                 this.mistakes++;
             }
 

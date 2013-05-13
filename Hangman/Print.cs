@@ -13,6 +13,11 @@ namespace HangMan
                                   "'restart' to start a new game, \n'help' to cheat and 'exit' to quit the game.");
         }
 
+        public static void Welcome()
+        {
+            Console.WriteLine("Welcome to Hangman");
+        }
+
         public static void GoodBye()
         {
             Console.WriteLine("GoodBye");
@@ -47,6 +52,11 @@ namespace HangMan
         public static void Cheated()
         {
             Console.WriteLine("You cheated !!!");
+        }
+
+        public static void LetterNotFound()
+        {
+            Console.WriteLine("Letter Not Found");
         }
 
     }
