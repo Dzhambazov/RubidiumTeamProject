@@ -25,20 +25,9 @@ namespace HangMan
 
         public Hangman()
         {
-            //get random word bug fixed
-            GenerateWord();
-            GeneratePlayersWord();
 
-            this.cheated = false;
-            this.mistakes = 0;
-            this.lettersLeft = playersWord.Length;
-
-            for (int i = 0; i < 5; i++)
-            {
-                scoreBoardCurrentPosition[i] = new ScoreBoardPosition(string.Empty, 999);
-            }
         }
-
+        
         /// <summary>
         /// Method for generating word, functionality extracted from the constructor
         /// </summary>
@@ -47,7 +36,6 @@ namespace HangMan
             int wordNumber = RandomGenerator.randomGenerator.Next(0, words.Count());
             this.wordToGuess = words[wordNumber];
         }
-
 
         /// <summary>
         /// Method for generating players word, functionality extracted from the constructor
@@ -64,6 +52,7 @@ namespace HangMan
 
         public void Play()
         {
+            Restart();
             Console.WriteLine("Welcome to Hangman");
             Print.GameGuide();
             PrintWord();
@@ -93,7 +82,6 @@ namespace HangMan
                 if (wordGuessed)
                 {
                     End();
-                    Restart();
                 }
             }
             else
@@ -154,6 +142,10 @@ namespace HangMan
             playersWord[toBeRevealed] = wordToGuess[toBeRevealed];
             this.cheated = true;
             this.lettersLeft--;
+            if (this.lettersLeft == 0)
+            {
+                End();
+            }
         }
 
         public bool Guess(char letter)
@@ -226,7 +218,7 @@ namespace HangMan
                         }
 
                         Array.Sort(scoreBoardCurrentPosition);
-                        return;
+                        break;
                     }
                 }
             }
@@ -234,6 +226,7 @@ namespace HangMan
             {
                 Print.Cheated();
             }
+            Restart();
         }
 
         public void ShowScoreboard()
@@ -254,19 +247,17 @@ namespace HangMan
         public void Restart()
         {
             //get random word bug fixed
-            int wordNumber = RandomGenerator.randomGenerator.Next(0, words.Count());
-
-            this.wordToGuess = words[wordNumber];
-            this.playersWord = new char[wordToGuess.Length];
-
-            for (int i = 0; i < playersWord.Length; i++)
-            {
-                playersWord[i] = '_';
-            }
+            GenerateWord();
+            GeneratePlayersWord();
 
             this.cheated = false;
             this.mistakes = 0;
             this.lettersLeft = playersWord.Length;
+
+            for (int i = 0; i < 5; i++)
+            {
+                scoreBoardCurrentPosition[i] = new ScoreBoardPosition(string.Empty, 999);
+            }
         }
     }
 }
