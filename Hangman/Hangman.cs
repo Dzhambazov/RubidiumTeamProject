@@ -5,11 +5,6 @@ using System.Text;
 
 namespace HangMan
 {
-
-    /// <summary>
-    /// Премахвам ненужните празни редове и добавям празни редове, където са нужни.
-    /// Преименувам някой променливи с по-подходящи имена.(scoreBoard -> scoreBoardCurrentPosition, методите съм преименувал да започват с главна буква)
-    /// </summary>
     class Hangman
     {
         // private string[] words = {"debugger"};
@@ -18,12 +13,52 @@ namespace HangMan
         private string wordToGuess;
         private char[] playersWord;
         private bool cheated;
-        int mistakes;
-        int lettersLeft;
+        private int mistakes;
+        private int lettersLeft;
 
         public Hangman()
         {
 
+        }
+
+#region public methods
+
+        /// <summary>
+        /// Game Engine that calls all the methods it needs
+        /// </summary>
+        public void Play()
+        {
+            InitialiseNewGame();
+            Print.Welcome();
+            Print.GameGuide();
+            PrintWord();
+            string input = GetInput();
+
+            while (input != "exit")
+            {
+                CheckInput(input);
+                Print.GameGuide();
+                PrintWord();
+                input = GetInput();
+            }
+            Print.GoodBye();
+        }
+
+#endregion
+
+#region Private methods
+
+        #region Initialise
+
+        private void InitialiseNewGame()
+        {
+            //get random word bug fixed
+            GenerateWord();
+            GeneratePlayersWord();
+
+            this.cheated = false;
+            this.mistakes = 0;
+            this.lettersLeft = playersWord.Length;
         }
 
         /// <summary>
@@ -48,23 +83,10 @@ namespace HangMan
             }
         }
 
-        public void Play()
-        {
-            InitialiseNewGame();
-            Print.Welcome();
-            Print.GameGuide();
-            PrintWord();
-            string input = GetInput();
+    #endregion
 
-            while (input != "exit")
-            {
-                CheckInput(input);
-                Print.GameGuide();
-                PrintWord();
-                input = GetInput();
-            }
-            Print.GoodBye();
-        }
+
+        #region CheckInput
 
         /// <summary>
         /// check for letter in searched word and execute commands
@@ -88,7 +110,10 @@ namespace HangMan
             }
         }
 
-        //added get input method
+        /// <summary>
+        /// Prints what the player should do and gets player's input
+        /// </summary>
+        /// <returns>String representing player's input</returns>
         private static string GetInput()
         {
             Print.EnterLetterOrCommand();
@@ -96,6 +121,10 @@ namespace HangMan
             return input;
         }
 
+        /// <summary>
+        /// Execute a command from the list or prints "Invalid command"
+        /// </summary>
+        /// <param name="input">String representing player's input</param>
         private void ExecuteCommand(string input)
         {
             switch (input)
@@ -122,31 +151,13 @@ namespace HangMan
                     }
             }
         }
-
-        public void PrintWord()
-        {
-            Print.WordIs();
-            foreach (var letter in playersWord)
-            {
-                Console.Write(letter + " ");
-            }
-            Console.WriteLine();
-        }
-
-        // help bug fixed
-        public void Help()
-        {
-            int toBeRevealed = Array.IndexOf(playersWord, '_');
-            playersWord[toBeRevealed] = wordToGuess[toBeRevealed];
-            this.cheated = true;
-            this.lettersLeft--;
-            if (this.lettersLeft == 0)
-            {
-                End();
-            }
-        }
-
-        public bool Guess(char letter)
+         
+        /// <summary>
+        /// Checks if the word contains the letter that player guessed
+        /// </summary>
+        /// <param name="letter">Char representing the letter that player guess</param>
+        /// <returns>Returns boolean value is the letter guessed</returns>
+        private bool Guess(char letter)
         {
             int guessedLettersCount = 0;
             guessedLettersCount += CharsGuessed(letter);
@@ -191,7 +202,41 @@ namespace HangMan
             return counter;
         }
 
-        public void End()
+    #endregion  
+
+        private void PrintWord()
+        {
+            Print.WordIs();
+            foreach (var letter in playersWord)
+            {
+                Console.Write(letter + " ");
+            }
+            Console.WriteLine();
+        }
+
+        /// <summary>
+        /// Used as a hint in the game
+        /// Can call End() method
+        /// </summary>
+        private void Help()
+        {
+            int toBeRevealed = Array.IndexOf(playersWord, '_');
+            playersWord[toBeRevealed] = wordToGuess[toBeRevealed];
+            this.cheated = true;
+            this.lettersLeft--;
+            if (this.lettersLeft == 0)
+            {
+                End();
+            }
+        }
+
+        /// <summary>
+        /// Call this method if the word is guessed
+        /// Checks if the player have cheated
+        /// Calls ScoreBoard methods
+        /// Reset initialise of all fields
+        /// </summary>
+        private void End()
         {
             Print.GuessedWord();
             if (!this.cheated)
@@ -208,20 +253,16 @@ namespace HangMan
             InitialiseNewGame();
         }
 
-        public void ShowScoreboard()
+        /// <summary>
+        /// Prints top players on the console
+        /// </summary>
+        private void ShowScoreboard()
         {
             ScoreBoard.PrintTopRecords();
         }
 
-        public void InitialiseNewGame()
-        {
-            //get random word bug fixed
-            GenerateWord();
-            GeneratePlayersWord();
+#endregion
 
-            this.cheated = false;
-            this.mistakes = 0;
-            this.lettersLeft = playersWord.Length;
-        }
+
     }
 }

@@ -10,6 +10,8 @@ namespace HangMan
     {
         private static  List<KeyValuePair<string, int>> allRecords = new List<KeyValuePair<string, int>>();
 
+        #region Public methods
+
         /// <summary>
         /// Add record to list
         /// </summary>
@@ -26,6 +28,28 @@ namespace HangMan
                 SortRecordsInFile();
             }
         }
+
+        /// <summary>
+        /// Print top 10 (if 10 records exist or less) on the console
+        /// </summary>
+        public static void PrintTopRecords()
+        {
+            GetAllRecords();
+            int recordsLength = 10;
+            if (allRecords.Count() < 10)
+            {
+                recordsLength = allRecords.Count();
+            }
+
+            for (int i = 0; i < recordsLength; i++)
+            {
+                Console.WriteLine("{0} - {1}", allRecords[i].Key, allRecords[i].Value);
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
 
         /// <summary>
         /// Checks if the player have had same result before
@@ -108,22 +132,7 @@ namespace HangMan
             }
         }
 
-        /// <summary>
-        /// Print top 10 (if 10 records exist or less) on the console
-        /// </summary>
-        public static void PrintTopRecords()
-        {
-            GetAllRecords();
-            int recordsLength = 10;
-            if (allRecords.Count() < 10)
-            {
-                recordsLength = allRecords.Count();
-            }
+        #endregion
 
-            for (int i = 0; i < recordsLength; i++)
-            {
-                Console.WriteLine("{0} - {1}", allRecords[i].Key, allRecords[i].Value);
-            }
-        }
     }
 }
