@@ -12,10 +12,8 @@ namespace HangMan
     /// </summary>
     class Hangman
     {
-
-       ScoreBoardPosition[] scoreBoardCurrentPosition = new ScoreBoardPosition[5];
-      // private string[] words = {"debugger"};
-       private string[] words = {"computer", "programmer", "software", "debugger", "compiler", 
+        // private string[] words = {"debugger"};
+        private string[] words = {"computer", "programmer", "software", "debugger", "compiler", 
                                          "developer", "algorithm", "array", "method", "variable"};
         private string wordToGuess;
         private char[] playersWord;
@@ -27,7 +25,7 @@ namespace HangMan
         {
 
         }
-        
+
         /// <summary>
         /// Method for generating word, functionality extracted from the constructor
         /// </summary>
@@ -152,7 +150,7 @@ namespace HangMan
         {
             int guessedLettersCount = 0;
             guessedLettersCount += CharsGuessed(letter);
-            
+
             if (guessedLettersCount > 0)
             {
                 this.lettersLeft -= guessedLettersCount;
@@ -198,29 +196,10 @@ namespace HangMan
             Print.GuessedWord();
             if (!this.cheated)
             {
-                for (int i = 0; i < 5; i++)
-                {
-                    if (scoreBoardCurrentPosition[i].PlayerName == string.Empty ||
-                        this.mistakes < scoreBoardCurrentPosition[i].MistakesCount)
-                    {
-                        Print.MadeAScoreboard();
-                        string playerName = Console.ReadLine();
-
-                        if (scoreBoardCurrentPosition[i].PlayerName == string.Empty)
-                        {
-                            scoreBoardCurrentPosition[i].PlayerName = playerName;
-                            scoreBoardCurrentPosition[i].MistakesCount = this.mistakes;
-                        }
-                        else
-                        {
-                            scoreBoardCurrentPosition[4].PlayerName = playerName;
-                            scoreBoardCurrentPosition[4].MistakesCount = this.mistakes;
-                        }
-
-                        Array.Sort(scoreBoardCurrentPosition);
-                        break;
-                    }
-                }
+                Print.MadeAScoreboard();
+                string playerName = Console.ReadLine();
+                Player player = new Player(playerName,mistakes);
+                ScoreBoard.AddScore(player);
             }
             else
             {
@@ -231,17 +210,7 @@ namespace HangMan
 
         public void ShowScoreboard()
         {
-            Console.WriteLine();
-
-            for (int i = 0; i < scoreBoardCurrentPosition.Length; i++)
-            {
-                if (scoreBoardCurrentPosition[i] != default(ScoreBoardPosition))
-                {
-                    Console.WriteLine("{0} --> {1} - {2} mistakes", i + 1, scoreBoardCurrentPosition[i].PlayerName, scoreBoardCurrentPosition[i].MistakesCount);
-                }
-            }
-
-            Console.WriteLine();
+            ScoreBoard.PrintTopRecords();
         }
 
         public void InitialiseNewGame()
@@ -253,11 +222,6 @@ namespace HangMan
             this.cheated = false;
             this.mistakes = 0;
             this.lettersLeft = playersWord.Length;
-
-            for (int i = 0; i < 5; i++)
-            {
-                scoreBoardCurrentPosition[i] = new ScoreBoardPosition(string.Empty, 999);
-            }
         }
     }
 }

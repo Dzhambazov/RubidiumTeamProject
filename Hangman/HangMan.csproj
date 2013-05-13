@@ -57,11 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPlayer.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Print.cs" />
     <Compile Include="Hangman.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="RandomGenerator.cs" />
-    <Compile Include="ScoreBoardPosition.cs" />
+    <Compile Include="ScoreBoard.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
