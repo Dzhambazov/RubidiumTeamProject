@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+
 
 namespace HangMan
 {
     class Hangman
     {
-        // private string[] words = {"debugger"};
-        private string[] words = {"computer", "programmer", "software", "debugger", "compiler", 
-                                         "developer", "algorithm", "array", "method", "variable"};
+        private string[] words;
         private string wordToGuess;
         private char[] playersWord;
         private bool cheated;
@@ -21,6 +21,18 @@ namespace HangMan
 
         }
 
+        /// <summary>
+        /// Gets words from words.txt and push em all to array words
+        /// </summary>
+        private void getWordsFromFile()
+        {
+            using (StreamReader reader = new StreamReader("Words.txt", true))
+            {
+                string words = reader.ReadToEnd().Trim();
+                this.words = words.Split('\r');
+            }
+        }
+
 #region public methods
 
         /// <summary>
@@ -28,6 +40,7 @@ namespace HangMan
         /// </summary>
         public void Play()
         {
+            getWordsFromFile();
             InitialiseNewGame();
             Print.Welcome();
             Print.GameGuide();
