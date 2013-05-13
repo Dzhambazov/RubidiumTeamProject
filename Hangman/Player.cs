@@ -21,7 +21,21 @@ namespace HangMan
             get { return this.name; }
             set
             {
-                this.name = value;
+                if (!String.IsNullOrEmpty(value))
+                {
+                    if (value.Length > 2)
+                    {
+                        this.name = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Name should be at least 3 symbols long ");
+                    }
+                }
+                else
+                {
+                    throw new ArgumentNullException("Name cannot be null or empty");
+                }
             }
         }
 
@@ -30,7 +44,21 @@ namespace HangMan
             get { return this.mistakes; }
             set
             {
-                this.mistakes = value;
+                if (value != null)
+                {
+                    if (value >= 0)
+                    {
+                        this.mistakes = value;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Mistakes cannot be a negative number !");
+                    }
+                }
+                else
+                {
+                    throw new ArgumentNullException("Mistakes cannot be null !");
+                }
             }
         }
     }
