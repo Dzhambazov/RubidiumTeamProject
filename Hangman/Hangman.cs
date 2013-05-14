@@ -26,7 +26,7 @@ namespace HangMan
         /// </summary>
         private void getWordsFromFile()
         {
-            using (StreamReader reader = new StreamReader("Words.txt", true))
+            using (StreamReader reader = new StreamReader(@"..\..\external files\Words.txt", true))
             {
                 string words = reader.ReadToEnd().Trim();
                 this.words = words.Split('\r');

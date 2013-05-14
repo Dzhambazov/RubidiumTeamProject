@@ -20,7 +20,7 @@ namespace HangMan
         {
             if (!IsPlayerAndScoreExist(player))
             {
-                using (StreamWriter writer = new StreamWriter("Records.txt", true))
+                using (StreamWriter writer = new StreamWriter(@"..\..\external files\Records.txt", true))
                 {
                     writer.WriteLine("{0} - {1}", player.Name, player.Mistakes);
                     writer.Close();
@@ -58,7 +58,7 @@ namespace HangMan
         /// <returns>True if exists and false if not</returns>
         private static bool IsPlayerAndScoreExist(Player player)
         {
-            using (StreamReader reader = new StreamReader("Records.txt", true))
+            using (StreamReader reader = new StreamReader(@"..\..\external files\Records.txt", true))
             {
                 string allRecordsStr = reader.ReadToEnd();
                 string[] lines = allRecordsStr.Split('\r');
@@ -80,7 +80,7 @@ namespace HangMan
         private static void GetAllRecords()
         {
             allRecords.Clear();
-            using (StreamReader reader = new StreamReader("Records.txt", true))
+            using (StreamReader reader = new StreamReader(@"..\..\external files\Records.txt", true))
             {
                 string allRecordsStr = reader.ReadToEnd();
                 string[] lines = allRecordsStr.Split('\r');
@@ -122,7 +122,7 @@ namespace HangMan
         private static void SortRecordsInFile()
         {
             SortRecords();
-            using (StreamWriter writer = new StreamWriter("Records.txt"))
+            using (StreamWriter writer = new StreamWriter(@"..\..\external files\Records.txt"))
             {
                 foreach (var record in allRecords)
                 {
