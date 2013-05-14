@@ -3,7 +3,9 @@ fixing scoreboard ---> done
 get words from external file ---> done
 get random word bug ----> FIXED
 help() bug  - при използване на  help има проблем с поведението ----> FIXED
-
+scoreboard bug - if some Player have same mistake - is rewrited. Thats way if one player have two time score not writed!
+by end - if no score in top 5 - by task condition must no player name to entered!
+must be done cicle by enter the name to ask for name till is valid player name /cathing or log the exeptions!
 
 
 UNIT TESTING !

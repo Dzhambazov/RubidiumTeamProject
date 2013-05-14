@@ -1,7 +1,9 @@
+Petar Ivanov - 0
 MnooLud - 1
 Petar Ivanov - 1
 Djambazov - 2
 ddf - 4
+Gogeto - 4
 Ludak - 5
 Stancho - 6
 NewPlayer - 7

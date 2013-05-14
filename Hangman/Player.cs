@@ -16,7 +16,7 @@
         public string Name
         {
             get { return this.name; }
-            set
+            private set
             {
                 if (!String.IsNullOrEmpty(value))
                 {

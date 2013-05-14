@@ -34,8 +34,8 @@
         public static void PrintTopRecords()
         {
             GetAllRecords();
-            int recordsLength = 10;
-            if (allRecords.Count() < 10)
+            int recordsLength = 5;
+            if (allRecords.Count() < 5)
             {
                 recordsLength = allRecords.Count();
             }
@@ -132,6 +132,5 @@
         }
 
         #endregion
-
     }
 }

@@ -279,7 +279,7 @@
             {
                 Print.MadeAScoreboard();
                 string playerName = Console.ReadLine();
-                Player player = new Player(playerName,mistakes);
+                Player player = new Player(playerName, mistakes);
                 ScoreBoard.AddScore(player);
             }
             else
