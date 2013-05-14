@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-
-namespace HangMan
+﻿namespace HangMan
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+
     public static class ScoreBoard
     {
         private static  List<KeyValuePair<string, int>> allRecords = new List<KeyValuePair<string, int>>();

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-
-
-namespace HangMan
+﻿namespace HangMan
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+
     class Hangman
     {
         private string[] words;
@@ -24,7 +21,7 @@ namespace HangMan
         /// <summary>
         /// Gets words from words.txt and push em all to array words
         /// </summary>
-        public void getWordsFromFile()
+        public void GetWordsFromFile()
         {
             using (StreamReader reader = new StreamReader(@"..\..\external files\Words.txt", true))
             {
@@ -45,7 +42,7 @@ namespace HangMan
         /// </summary>
         public void Play()
         {
-            getWordsFromFile();
+            GetWordsFromFile();
             InitialiseNewGame();
             Print.Welcome();
             Print.GameGuide();
@@ -84,7 +81,7 @@ namespace HangMan
         /// </summary>
         private void GenerateWord()
         {
-            int wordNumber = RandomGenerator.randomGenerator.Next(0, words.Count());
+            int wordNumber = RandomGenerator.Generator.Next(0, words.Count());
             this.wordToGuess = words[wordNumber];
         }
 

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace HangMan
+﻿namespace HangMan
 {
+    using System;
+
     public static class RandomGenerator
     {
-        public static readonly Random randomGenerator;
+        public static readonly Random Generator;
         static RandomGenerator()
         {
-            randomGenerator = new Random();
+            Generator = new Random();
         }
     }
 }

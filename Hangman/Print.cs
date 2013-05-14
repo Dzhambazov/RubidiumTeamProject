@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace HangMan
+﻿namespace HangMan
 {
+    using System;
+
     public static class Print
     {
         public static void GameGuide()
