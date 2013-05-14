@@ -9,8 +9,11 @@ namespace HangMan
     {
         public static void GameGuide()
         {
-            Console.WriteLine("Use 'top' to view the top scoreboard," +
-                                  "'restart' to start a new game, \n'help' to cheat and 'exit' to quit the game.");
+            Console.WriteLine(new string('-', 20) + Environment.NewLine + "Game commands:" + 
+                Environment.NewLine + new string('-', 79));
+            Console.WriteLine("Use 'top' to view the top scoreboard, 'restart' to start a new game, 'help' to" +
+                "\ncheat, 'addword' to add new word in game generator and 'exit' to quit the game." + 
+                Environment.NewLine + new string('-', 79));
         }
 
         public static void Welcome()
