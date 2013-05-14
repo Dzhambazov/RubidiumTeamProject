@@ -3,6 +3,7 @@ Djambazov - 2
 ddf - 4
 Ludak - 5
 Stancho - 6
+NewPlayer - 7
 InsanePlayer - 9
 Ludak - 9
 Gosho - 10

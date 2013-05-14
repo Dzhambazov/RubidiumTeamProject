@@ -24,12 +24,17 @@ namespace HangMan
         /// <summary>
         /// Gets words from words.txt and push em all to array words
         /// </summary>
-        private void getWordsFromFile()
+        public void getWordsFromFile()
         {
             using (StreamReader reader = new StreamReader(@"..\..\external files\Words.txt", true))
             {
                 string words = reader.ReadToEnd().Trim();
                 this.words = words.Split('\r');
+            }
+
+            for (int i = 0; i < this.words.Length; i++)
+            {
+                this.words[i] = this.words[i].Trim();
             }
         }
 
