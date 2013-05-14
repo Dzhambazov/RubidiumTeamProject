@@ -162,6 +162,11 @@ namespace HangMan
                         InitialiseNewGame();
                         break;
                     }
+                case "addword":
+                    {
+                        AddWord();
+                        break;
+                    }
                 default:
                     {
                         Print.InvalidCommand();
@@ -221,6 +226,22 @@ namespace HangMan
         }
 
     #endregion  
+
+        private void AddWord()
+        {
+            Print.AddWord();
+            string word = Console.ReadLine();
+            if (word != "")
+            {
+                if(word.Length > 4)
+                {
+                    using (StreamWriter writer = new StreamWriter(@"..\..\external files\Words.txt", true))
+                    {
+                        writer.WriteLine(word);
+                    }
+                }
+            }
+        }
 
         private void PrintWord()
         {

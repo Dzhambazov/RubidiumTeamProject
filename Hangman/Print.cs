@@ -59,5 +59,9 @@ namespace HangMan
             Console.WriteLine("Letter Not Found");
         }
 
+        public static void AddWord()
+        {
+            Console.Write("Please enter your word: ");
+        }
     }
 }

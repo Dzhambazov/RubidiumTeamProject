@@ -8,3 +8,5 @@ algorithm
 array
 method
 variable
+javascript
+telerik
