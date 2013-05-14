@@ -15,7 +15,6 @@
 
         public Hangman()
         {
-
         }
 
         /// <summary>
@@ -56,6 +55,7 @@
                 PrintWord();
                 input = GetInput();
             }
+
             Print.GoodBye();
         }
 
@@ -67,7 +67,6 @@
 
         private void InitialiseNewGame()
         {
-            //get random word bug fixed
             GenerateWord();
             GeneratePlayersWord();
 
@@ -99,7 +98,6 @@
         }
 
     #endregion
-
 
         #region CheckInput
 
@@ -144,26 +142,30 @@
         {
             switch (input)
             {
-                case "top":
+                case "top": 
                     {
                         ShowScoreboard();
                         break;
                     }
+
                 case "help":
                     {
                         Help();
                         break;
                     }
+
                 case "restart":
                     {
                         InitialiseNewGame();
                         break;
                     }
+
                 case "addword":
                     {
                         AddWord();
                         break;
                     }
+
                 default:
                     {
                         Print.InvalidCommand();
@@ -219,6 +221,7 @@
                     counter++;
                 }
             }
+
             return counter;
         }
 
@@ -228,9 +231,9 @@
         {
             Print.AddWord();
             string word = Console.ReadLine();
-            if (word != "")
+            if (word != string.Empty)
             {
-                if(word.Length > 4)
+                if (word.Length > 4)
                 {
                     using (StreamWriter writer = new StreamWriter(@"..\..\external files\Words.txt", true))
                     {
@@ -247,6 +250,7 @@
             {
                 Console.Write(letter + " ");
             }
+
             Console.WriteLine();
         }
 
@@ -256,13 +260,13 @@
         /// </summary>
         private void Help()
         {
-            int toBeRevealed = Array.IndexOf(playersWord, '_');
-            playersWord[toBeRevealed] = wordToGuess[toBeRevealed];
+            int toBeRevealed = Array.IndexOf(this.playersWord, '_');
+            this.playersWord[toBeRevealed] = this.wordToGuess[toBeRevealed];
             this.cheated = true;
             this.lettersLeft--;
             if (this.lettersLeft == 0)
             {
-                End();
+                this.End();
             }
         }
 
@@ -270,7 +274,7 @@
         /// Call this method if the word is guessed
         /// Checks if the player have cheated
         /// Calls ScoreBoard methods
-        /// Reset initialise of all fields
+        /// Reset initialises of all fields
         /// </summary>
         private void End()
         {
@@ -279,14 +283,15 @@
             {
                 Print.MadeAScoreboard();
                 string playerName = Console.ReadLine();
-                Player player = new Player(playerName, mistakes);
+                Player player = new Player(playerName, this.mistakes);
                 ScoreBoard.AddScore(player);
             }
             else
             {
                 Print.Cheated();
             }
-            InitialiseNewGame();
+
+            this.InitialiseNewGame();
         }
 
         /// <summary>

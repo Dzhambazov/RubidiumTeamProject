@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Player:IPlayer
+    public class Player : IPlayer
     {
         private string name;
         private int mistakes;
@@ -15,10 +15,14 @@
 
         public string Name
         {
-            get { return this.name; }
+            get
+            {
+                return this.name;
+            }
+
             private set
             {
-                if (!String.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value))
                 {
                     if (value.Length > 2)
                     {
@@ -38,24 +42,19 @@
 
         public int Mistakes
         {
-            get { return this.mistakes; }
+            get
+            {
+                return this.mistakes; 
+            }
+
             set
             {
-                if (value != null)
+                if (value <= 0)
                 {
-                    if (value >= 0)
-                    {
-                        this.mistakes = value;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("Mistakes cannot be a negative number !");
-                    }
+                    throw new ArgumentException("Mistakes cannot be a negative number !");                    
                 }
-                else
-                {
-                    throw new ArgumentNullException("Mistakes cannot be null !");
-                }
+
+                this.mistakes = value;
             }
         }
     }

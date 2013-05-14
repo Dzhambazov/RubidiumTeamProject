@@ -7,6 +7,7 @@ Gogeto - 4
 Ludak - 5
 Stancho - 6
 NewPlayer - 7
+far - 9
 InsanePlayer - 9
 Ludak - 9
 Gosho - 10
