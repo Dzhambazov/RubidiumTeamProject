@@ -22,20 +22,17 @@
 
             private set
             {
-                if (!string.IsNullOrEmpty(value))
+                if (value == null)
                 {
-                    if (value.Length > 2)
-                    {
-                        this.name = value;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("Name should be at least 3 symbols long ");
-                    }
+                    this.name = "Player";
+                }
+                else if (value.Length > 2)
+                {
+                    this.name = value;
                 }
                 else
                 {
-                    throw new ArgumentNullException("Name cannot be null or empty");
+                    this.name = "Player";
                 }
             }
         }

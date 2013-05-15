@@ -33,7 +33,7 @@ namespace HangMan.Tests
         
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void AddScoreInvalidInput()
+        public void AddScoreInvalidNullInputTest()
         {
             ScoreBoard.AddScore(null);
         }

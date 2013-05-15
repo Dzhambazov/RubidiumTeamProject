@@ -16,24 +16,27 @@ namespace HangMan.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void PlayerTestFailNullName()
         {
             Player player = new Player(null, 20);
+            string expectedName = "Player";
+            Assert.AreEqual(expectedName, player.Name);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void PlayerTestFailEmptyName()
         {
             Player player = new Player("", 20);
+            string expectedName = "Player";
+            Assert.AreEqual(expectedName, player.Name);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void PlayerTestFailShortName()
         {
             Player player = new Player("Lo", 20);
+            string expectedName = "Player";
+            Assert.AreEqual(expectedName, player.Name);
         }
 
         [TestMethod]
