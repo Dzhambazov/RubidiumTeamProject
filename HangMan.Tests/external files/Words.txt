@@ -1,0 +1,12 @@
+computer
+programmer
+software
+debugger
+compiler
+developer
+algorithm
+array
+method
+variable
+javascript
+telerik

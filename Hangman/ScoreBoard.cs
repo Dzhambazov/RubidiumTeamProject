@@ -34,8 +34,8 @@
         public static void PrintTopRecords()
         {
             GetAllRecords();
-            int recordsLength = 5;
-            if (allRecords.Count() < 5)
+            int recordsLength = 10;
+            if (allRecords.Count() < 10)
             {
                 recordsLength = allRecords.Count();
             }

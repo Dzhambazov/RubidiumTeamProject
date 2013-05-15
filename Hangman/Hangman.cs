@@ -12,7 +12,7 @@
         private bool cheated;
         private int mistakes;
         private int lettersLeft;
-
+  
         public Hangman()
         {
         }
