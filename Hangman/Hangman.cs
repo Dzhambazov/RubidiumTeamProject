@@ -67,6 +67,7 @@
 
         private void InitialiseNewGame()
         {
+            Console.Clear();
             this.GenerateWord();
             this.GeneratePlayersWord();
 
