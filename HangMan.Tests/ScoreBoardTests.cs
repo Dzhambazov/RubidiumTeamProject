@@ -31,6 +31,13 @@ namespace HangMan.Tests
             writer.Close();
         }
         
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AddScoreInvalidInput()
+        {
+            ScoreBoard.AddScore(null);
+        }
+        
 
     }
 }

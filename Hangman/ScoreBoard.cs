@@ -15,8 +15,13 @@
         /// Add record to list
         /// </summary>
         /// <param name="player">An instance of Player</param>
-        public static void AddScore(Player player)
+        public static void AddScore(IPlayer player)
         {
+            if (player == null)
+            {
+                throw new ArgumentNullException("Information for player is missing. Player can't be null.");
+            }
+
             if (!IsPlayerAndScoreExist(player))
             {
                 using (StreamWriter writer = new StreamWriter(@"..\..\external files\Records.txt", true))
@@ -55,7 +60,7 @@
         /// </summary>
         /// <param name="player">An instance of Player</param>
         /// <returns>True if exists and false if not</returns>
-        private static bool IsPlayerAndScoreExist(Player player)
+        private static bool IsPlayerAndScoreExist(IPlayer player)
         {
             using (StreamReader reader = new StreamReader(@"..\..\external files\Records.txt", true))
             {
