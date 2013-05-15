@@ -11,4 +11,5 @@ far - 9
 InsanePlayer - 9
 Ludak - 9
 Gosho - 10
+manchev - 15
 Pesho - 22
