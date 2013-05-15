@@ -12,7 +12,7 @@
         private bool cheated;
         private int mistakes;
         private int lettersLeft;
-  
+
         public Hangman()
         {
         }
@@ -34,7 +34,7 @@
             }
         }
 
-#region public methods
+        #region public methods
 
         /// <summary>
         /// Game Engine that calls all the methods it needs
@@ -59,9 +59,9 @@
             Print.GoodBye();
         }
 
-#endregion
+        #endregion
 
-#region Private methods
+        #region Private methods
 
         #region Initialise
 
@@ -97,7 +97,7 @@
             }
         }
 
-    #endregion
+        #endregion
 
         #region CheckInput
 
@@ -142,7 +142,7 @@
         {
             switch (input)
             {
-                case "top": 
+                case "top":
                     {
                         ShowScoreboard();
                         break;
@@ -173,7 +173,7 @@
                     }
             }
         }
-         
+
         /// <summary>
         /// Checks if the word contains the letter that player guessed
         /// </summary>
@@ -225,7 +225,7 @@
             return counter;
         }
 
-    #endregion  
+        #endregion
 
         private void AddWord()
         {
@@ -302,7 +302,7 @@
             ScoreBoard.PrintTopRecords();
         }
 
-#endregion
+        #endregion
 
 
     }

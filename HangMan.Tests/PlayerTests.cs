@@ -9,7 +9,7 @@ namespace HangMan.Tests
         [TestMethod]
         public void PlayerTestCorrectNameAndMistakes()
         {
-            Player player = new Player("Pesho",20);
+            Player player = new Player("Pesho", 20);
             string result = player.Name + " " + player.Mistakes;
             string expected = "Pesho 20";
             Assert.AreEqual(result, expected, true);
@@ -43,5 +43,11 @@ namespace HangMan.Tests
             Player player = new Player("Gosho", -2);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void PlayerTestFailBigNumberOfMisakes()
+        {
+            Player player = new Player("Gosho", int.MaxValue);
+        }
     }
 }
