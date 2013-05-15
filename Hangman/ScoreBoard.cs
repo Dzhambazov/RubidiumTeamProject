@@ -7,7 +7,7 @@
 
     public static class ScoreBoard
     {
-        private static  List<KeyValuePair<string, int>> allRecords = new List<KeyValuePair<string, int>>();
+        private static List<KeyValuePair<string, int>> allRecords = new List<KeyValuePair<string, int>>();
 
         #region Public methods
 
@@ -29,6 +29,7 @@
                     writer.WriteLine("{0} - {1}", player.Name, player.Mistakes);
                     writer.Close();
                 }
+
                 SortRecordsInFile();
             }
         }
@@ -40,6 +41,7 @@
         {
             GetAllRecords();
             int recordsLength = 10;
+
             if (allRecords.Count() < 10)
             {
                 recordsLength = allRecords.Count();
@@ -68,13 +70,14 @@
                 string[] lines = allRecordsStr.Split('\r');
                 foreach (var line in lines)
                 {
-                    string playerStr = player.Name+" - "+player.Mistakes;
+                    string playerStr = player.Name + " - " + player.Mistakes;
                     if (line.Trim() == playerStr)
                     {
                         return true;
                     }
                 }
             }
+
             return false;
         }
 
@@ -88,9 +91,10 @@
             {
                 string allRecordsStr = reader.ReadToEnd();
                 string[] lines = allRecordsStr.Split('\r');
+
                 foreach (var line in lines)
                 {
-                    if (!String.IsNullOrEmpty(line.Trim()))
+                    if (!string.IsNullOrEmpty(line.Trim()))
                     {
                         string[] record = line.Trim().Split(new string[] { " - " }, StringSplitOptions.None);
                         string name = record[0].Trim();
@@ -98,6 +102,7 @@
                         allRecords.Add(new KeyValuePair<string, int>(name, mistakes));
                     }
                 }
+
                 reader.Close();
             }
         }
@@ -117,6 +122,7 @@
             {
                 allSortedRecords.Add(new KeyValuePair<string, int>(record.Key, record.Value));
             }
+
             allRecords = allSortedRecords;
         }
 
@@ -130,8 +136,9 @@
             {
                 foreach (var record in allRecords)
                 {
-                    writer.WriteLine("{0} - {1}",record.Key, record.Value);
+                    writer.WriteLine("{0} - {1}", record.Key, record.Value);
                 }
+
                 writer.Close();
             }
         }

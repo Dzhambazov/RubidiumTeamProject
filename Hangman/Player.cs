@@ -46,7 +46,7 @@
 
             set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
                     throw new ArgumentException("Mistakes cannot be a negative number !");                    
                 }

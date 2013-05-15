@@ -4,7 +4,7 @@
     using System.IO;
     using System.Linq;
 
-    class Hangman
+    public class Hangman
     {
         private string[] words;
         private string wordToGuess;
@@ -41,19 +41,19 @@
         /// </summary>
         public void Play()
         {
-            GetWordsFromFile();
-            InitialiseNewGame();
+            this.GetWordsFromFile();
+            this.InitialiseNewGame();
             Print.Welcome();
             Print.GameGuide();
-            PrintWord();
-            string input = GetInput();
+            this.PrintWord();
+            string input = this.GetInput();
 
             while (input != "exit")
             {
-                CheckInput(input);
+                this.CheckInput(input);
                 Print.GameGuide();
-                PrintWord();
-                input = GetInput();
+                this.PrintWord();
+                input = this.GetInput();
             }
 
             Print.GoodBye();
@@ -67,12 +67,12 @@
 
         private void InitialiseNewGame()
         {
-            GenerateWord();
-            GeneratePlayersWord();
+            this.GenerateWord();
+            this.GeneratePlayersWord();
 
             this.cheated = false;
             this.mistakes = 0;
-            this.lettersLeft = playersWord.Length;
+            this.lettersLeft = this.playersWord.Length;
         }
 
         /// <summary>
@@ -80,8 +80,8 @@
         /// </summary>
         private void GenerateWord()
         {
-            int wordNumber = RandomGenerator.Generator.Next(0, words.Count());
-            this.wordToGuess = words[wordNumber];
+            int wordNumber = RandomGenerator.Generator.Next(0, this.words.Count());
+            this.wordToGuess = this.words[wordNumber];
         }
 
         /// <summary>
@@ -89,11 +89,11 @@
         /// </summary>
         private void GeneratePlayersWord()
         {
-            this.playersWord = new char[wordToGuess.Length];
+            this.playersWord = new char[this.wordToGuess.Length];
 
-            for (int i = 0; i < playersWord.Length; i++)
+            for (int i = 0; i < this.playersWord.Length; i++)
             {
-                playersWord[i] = '_';
+                this.playersWord[i] = '_';
             }
         }
 
@@ -110,16 +110,16 @@
             if (input.Length == 1)
             {
                 bool wordGuessed = false;
-                wordGuessed = Guess(input[0]);
+                wordGuessed = this.Guess(input[0]);
 
                 if (wordGuessed)
                 {
-                    End();
+                    this.End();
                 }
             }
             else
             {
-                ExecuteCommand(input);
+                this.ExecuteCommand(input);
             }
         }
 
@@ -127,7 +127,7 @@
         /// Prints what the player should do and gets player's input
         /// </summary>
         /// <returns>String representing player's input</returns>
-        private static string GetInput()
+        private string GetInput()
         {
             Print.EnterLetterOrCommand();
             string input = Console.ReadLine();
@@ -144,25 +144,25 @@
             {
                 case "top":
                     {
-                        ShowScoreboard();
+                        this.ShowScoreboard();
                         break;
                     }
 
                 case "help":
                     {
-                        Help();
+                        this.Help();
                         break;
                     }
 
                 case "restart":
                     {
-                        InitialiseNewGame();
+                        this.InitialiseNewGame();
                         break;
                     }
 
                 case "addword":
                     {
-                        AddWord();
+                        this.AddWord();
                         break;
                     }
 
@@ -182,7 +182,7 @@
         private bool Guess(char letter)
         {
             int guessedLettersCount = 0;
-            guessedLettersCount += CharsGuessed(letter);
+            guessedLettersCount += this.CharsGuessed(letter);
 
             if (guessedLettersCount > 0)
             {
@@ -213,11 +213,11 @@
         private int CharsGuessed(char letter)
         {
             int counter = 0;
-            for (int i = 0; i < wordToGuess.Length; i++)
+            for (int i = 0; i < this.wordToGuess.Length; i++)
             {
-                if (wordToGuess[i] == letter && playersWord[i] == '_')
+                if (this.wordToGuess[i] == letter && this.playersWord[i] == '_')
                 {
-                    playersWord[i] = letter;
+                    this.playersWord[i] = letter;
                     counter++;
                 }
             }
@@ -246,7 +246,7 @@
         private void PrintWord()
         {
             Print.WordIs();
-            foreach (var letter in playersWord)
+            foreach (var letter in this.playersWord)
             {
                 Console.Write(letter + " ");
             }
@@ -303,7 +303,5 @@
         }
 
         #endregion
-
-
     }
 }

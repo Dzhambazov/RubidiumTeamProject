@@ -49,6 +49,7 @@
             Console.WriteLine("Congratulations! You made the scoreboard");
             Console.Write("Enter your name: ");
         }
+
         public static void Cheated()
         {
             Console.WriteLine("You cheated !!!");
