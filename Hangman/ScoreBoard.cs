@@ -119,9 +119,10 @@ namespace HangMan
         private static void SortRecords()
         {
             GetAllRecords();
-            var sortedRecords = from records in allRecords
-                                orderby records.Value, records.Key
-                                select records;
+            var sortedRecords = 
+                from records in allRecords
+                orderby records.Value, records.Key
+                select records;
 
             List<KeyValuePair<string, int>> allSortedRecords = new List<KeyValuePair<string, int>>();
             foreach (var record in sortedRecords)
