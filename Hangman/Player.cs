@@ -46,12 +46,21 @@
 
             set
             {
-                if (value < 0)
+                if (value != null)
                 {
-                    throw new ArgumentException("Mistakes cannot be a negative number !");                    
+                    if (value < 0)
+                    {
+                        throw new ArgumentException("Mistakes cannot be a negative number !");
+                    }
+                    else
+                    {
+                        this.mistakes = value;
+                    }
                 }
-
-                this.mistakes = value;
+                else
+                {
+                    throw new ArgumentNullException("Mistakes count cannot be null.");
+                }
             }
         }
     }
