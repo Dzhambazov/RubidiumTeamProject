@@ -1,4 +1,10 @@
-﻿namespace HangMan
+﻿//-----------------------------------------------------------------------
+// <copyright file="ScoreBoard.cs" company="Telerik Academy">
+//  Copyright (c) 2013 Telerik Academy. All rights reserved.
+// </copyright>
+// <author>Team "Rubidium"</author>
+//-----------------------------------------------------------------------
+namespace HangMan
 {
     using System;
     using System.Collections.Generic;
@@ -40,9 +46,9 @@
         public static void PrintTopRecords()
         {
             GetAllRecords();
-            int recordsLength = 10;
+            int recordsLength = 5;
 
-            if (allRecords.Count() < 10)
+            if (allRecords.Count() < 5)
             {
                 recordsLength = allRecords.Count();
             }

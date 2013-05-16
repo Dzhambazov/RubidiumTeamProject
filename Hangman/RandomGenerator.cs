@@ -1,4 +1,10 @@
-﻿namespace HangMan
+﻿//-----------------------------------------------------------------------
+// <copyright file="RandomGenerator.cs" company="Telerik Academy">
+//  Copyright (c) 2013 Telerik Academy. All rights reserved.
+// </copyright>
+// <author>Team "Rubidium"</author>
+//-----------------------------------------------------------------------
+namespace HangMan
 {
     using System;
 

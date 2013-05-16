@@ -1,8 +1,8 @@
 ﻿namespace HangMan
 {
-    class Program
+    public static class Program
     {
-        static void Main()
+        public static void Main()
         {
             Hangman game = new Hangman();
             game.Play();
