@@ -19,7 +19,7 @@ namespace HangMan.Tests
         public void PlayerTestFailNullName()
         {
             Player player = new Player(null, 20);
-            string expectedName = "Player";
+            string expectedName = "Unknown";
             Assert.AreEqual(expectedName, player.Name);
         }
 
@@ -27,7 +27,7 @@ namespace HangMan.Tests
         public void PlayerTestFailEmptyName()
         {
             Player player = new Player("", 20);
-            string expectedName = "Player";
+            string expectedName = "Unknown";
             Assert.AreEqual(expectedName, player.Name);
         }
 
@@ -35,7 +35,7 @@ namespace HangMan.Tests
         public void PlayerTestFailShortName()
         {
             Player player = new Player("Lo", 20);
-            string expectedName = "Player";
+            string expectedName = "Unknown";
             Assert.AreEqual(expectedName, player.Name);
         }
 
@@ -47,7 +47,7 @@ namespace HangMan.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void PlayerTestFailBigNumberOfMisakes()
         {
             Player player = new Player("Gosho", int.MaxValue);

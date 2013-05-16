@@ -1,24 +1,58 @@
-﻿namespace HangMan
+﻿//-----------------------------------------------------------------------
+// <copyright file="Hangman.cs" company="Telerik Academy">
+//  Copyright (c) 2013 Telerik Academy. All rights reserved.
+// </copyright>
+// <author>Team "Rubidium"</author>
+//-----------------------------------------------------------------------
+namespace HangMan
 {
     using System;
     using System.IO;
     using System.Linq;
 
+    /// <summary>
+    /// Includes engine for the game Hangman
+    /// </summary>
     public class Hangman
     {
+        #region Fields
+        /// <summary>
+        /// An array containing all the words in the game Hangman
+        /// </summary>
         private string[] words;
+
+        /// <summary>
+        /// Represent the current word on the playing field
+        /// </summary>
         private string wordToGuess;
+
+        /// <summary>
+        /// Represent the players trys to guess the word on the playing field
+        /// </summary>
         private char[] playersWord;
+
+        /// <summary>
+        /// Represent if the player was try to cheat
+        /// </summary>
         private bool cheated;
+
+        /// <summary>
+        /// Represents the number of player mistakes
+        /// </summary>
         private int mistakes;
+
+        /// <summary>
+        /// Represents remaining letter to be guessed
+        /// </summary>
         private int lettersLeft;
+        #endregion
 
         public Hangman()
         {
         }
 
         /// <summary>
-        /// Gets words from words.txt and push em all to array words
+        /// Gets words from words.txt and push them all to array words
         /// </summary>
         public void GetWordsFromFile()
         {
@@ -64,7 +98,9 @@
         #region Private methods
 
         #region Initialise
-
+        /// <summary>
+        /// Initialise new game
+        /// </summary>
         private void InitialiseNewGame()
         {
             Console.Clear();
@@ -103,7 +139,7 @@
         #region CheckInput
 
         /// <summary>
-        /// check for letter in searched word and execute commands
+        /// Check for letter in searched word and execute commands
         /// </summary>
         /// <param name="input">Get input from console representing letter to check or execute command</param>
         private void CheckInput(string input)
@@ -228,6 +264,9 @@
 
         #endregion
 
+        /// <summary>
+        /// Add word by player choice in game word generator
+        /// </summary>
         private void AddWord()
         {
             Print.AddWord();
@@ -244,6 +283,9 @@
             }
         }
 
+        /// <summary>
+        /// Print players trys to guess current word
+        /// </summary>
         private void PrintWord()
         {
             Print.WordIs();

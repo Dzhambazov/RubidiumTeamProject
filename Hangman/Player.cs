@@ -1,4 +1,10 @@
-﻿namespace HangMan
+﻿//-----------------------------------------------------------------------
+// <copyright file="Player.cs" company="Telerik Academy">
+//  Copyright (c) 2013 Telerik Academy. All rights reserved.
+// </copyright>
+// <author>Team "Rubidium"</author>
+//-----------------------------------------------------------------------
+namespace HangMan
 {
     using System;
 
@@ -24,7 +30,7 @@
             {
                 if (value == null)
                 {
-                    this.name = "Player";
+                    this.name = "Unknown";
                 }
                 else if (value.Length > 2)
                 {
@@ -32,7 +38,7 @@
                 }
                 else
                 {
-                    this.name = "Player";
+                    this.name = "Unknown";
                 }
             }
         }
@@ -41,25 +47,22 @@
         {
             get
             {
-                return this.mistakes; 
+                return this.mistakes;
             }
 
-            set
+            private set
             {
-                if (value != null)
+                if (value < 0)
                 {
-                    if (value < 0)
-                    {
-                        throw new ArgumentException("Mistakes cannot be a negative number !");
-                    }
-                    else
-                    {
-                        this.mistakes = value;
-                    }
+                    throw new ArgumentException("Mistakes cannot be a negative number!");
+                }
+                if (value >= int.MaxValue)
+                {
+                    throw new ArgumentOutOfRangeException("Mistakes cannot be a so big number!");
                 }
                 else
                 {
-                    throw new ArgumentNullException("Mistakes count cannot be null.");
+                    this.mistakes = value;
                 }
             }
         }
