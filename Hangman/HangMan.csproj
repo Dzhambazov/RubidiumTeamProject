@@ -61,7 +61,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Print.cs" />
     <Compile Include="Hangman.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="HangmanGame.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="ScoreBoard.cs" />
   </ItemGroup>

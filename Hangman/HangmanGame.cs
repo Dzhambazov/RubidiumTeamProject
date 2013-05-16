@@ -1,6 +1,6 @@
 ﻿namespace HangMan
 {
-    public static class Program
+    public static class HangmanGame
     {
         public static void Main()
         {
