@@ -49,9 +49,10 @@
             Console.Write("The secret word is:");
         }
 
-        public static void GuessedWordMessage()
+        public static string GuessedWordMessage()
         {
-            Console.WriteLine("Congratulations! You guessed the word");
+            string message = "Congratulations! You guessed the word!";
+            return message;
         }
 
         public static void MadeAScoreboardMessage()
@@ -60,19 +61,22 @@
             Console.Write("Enter your name: ");
         }
 
-        public static void CheatedMessage()
+        public static string CheatedMessage()
         {
-            Console.WriteLine("You cheated !!!");
+            string message = "You cheated !!!";
+            return message;
         }
 
-        public static void LetterNotFoundMessage()
+        public static string LetterNotFoundMessage()
         {
-            Console.WriteLine("Invalid symbol. Please type only latin letters.");
+            string message = "Invalid symbol. Please type only latin letters.";
+            return message;
         }
 
-        public static void AddWordMessage()
+        public static string AddWordMessage()
         {
-            Console.Write("Please enter your word: ");
+            string message = "Please enter your word: ";
+            return message;
         }
     }
 }

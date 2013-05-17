@@ -44,6 +44,15 @@ namespace HangMan.Tests
         }
 
         [TestMethod]
+        public void PrintTestGuessedWordMessage()
+        {
+            string stringFromMethod = Print.GuessedWordMessage();
+            string expected = "Congratulations! You guessed the word!";
+            Assert.AreEqual(stringFromMethod, expected);
+        }
+
+
+        [TestMethod]
         public void PrintTestInvalidCommandMessage()
         {
             string stringFromMethod = Print.InvalidCommandMessage();
@@ -51,6 +60,29 @@ namespace HangMan.Tests
             Assert.AreEqual(stringFromMethod, expected);
         }
 
+        [TestMethod]
+        public void PrintTestCheatedMessage()
+        {
+            string stringFromMethod = Print.CheatedMessage();
+            string expected = "You cheated !!!";
+            Assert.AreEqual(stringFromMethod, expected);
+        }
+
+        [TestMethod]
+        public void PrintTestLetterNotFoundMessage()
+        {
+            string stringFromMethod = Print.LetterNotFoundMessage();
+            string expected = "Invalid symbol. Please type only latin letters.";
+            Assert.AreEqual(stringFromMethod, expected);
+        }
+
+        [TestMethod]
+        public void PrintTestAddWordMessage()
+        {
+            string stringFromMethod = Print.AddWordMessage();
+            string expected = "Please enter your word: ";
+            Assert.AreEqual(stringFromMethod, expected);
+        }
         
     }
 }

@@ -241,7 +241,7 @@ namespace HangMan
             }
             else
             {
-                Print.LetterNotFoundMessage();
+                Print.Writer(Print.LetterNotFoundMessage());
                 this.mistakes++;
             }
 
@@ -276,7 +276,7 @@ namespace HangMan
         /// </summary>
         private void AddWord()
         {
-            Print.AddWordMessage();
+            Print.Writer(Print.AddWordMessage());
             string word = Console.ReadLine();
             if (word != string.Empty)
             {
@@ -329,6 +329,7 @@ namespace HangMan
         private void End()
         {
             Print.GuessedWordMessage();
+            Print.Writer(Print.GuessedWordMessage());
             if (!this.cheated)
             {
                 Print.MadeAScoreboardMessage();
@@ -339,6 +340,7 @@ namespace HangMan
             else
             {
                 Print.CheatedMessage();
+                Print.Writer(Print.CheatedMessage());
             }
 
             this.InitialiseNewGame();
