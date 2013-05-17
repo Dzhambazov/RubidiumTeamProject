@@ -11,3 +11,4 @@ variable
 javascript
 telerik
 academy
+property

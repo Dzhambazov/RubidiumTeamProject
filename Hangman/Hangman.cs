@@ -15,6 +15,13 @@ namespace HangMan
     /// </summary>
     public class Hangman
     {
+
+
+        const string Top = "top";
+        const string Hint = "help";
+        const string Restart = "restart";
+        const string Addword = "addword";
+
         #region Fields
         /// <summary>
         /// An array containing all the words in the game Hangman
@@ -61,7 +68,7 @@ namespace HangMan
         {
             this.GetWordsFromFile();
             this.InitialiseNewGame();
-            Print.WelcomeMessage();
+            Print.Writer(Print.WelcomeMessage());
             Print.GameGuideMessage();
             this.PrintWord();
             string input = this.GetInput();
@@ -73,8 +80,7 @@ namespace HangMan
                 this.PrintWord();
                 input = this.GetInput();
             }
-
-            Print.GoodByeMessage();
+            Print.Writer(Print.GoodByeMessage());
         }
 
         #endregion
@@ -167,7 +173,7 @@ namespace HangMan
         /// <returns>String representing player's input</returns>
         private string GetInput()
         {
-            Print.EnterLetterOrCommandMessage();
+            Print.Writer(Print.EnterLetterOrCommandMessage());
             string input = Console.ReadLine();
             return input;
         }
@@ -180,25 +186,25 @@ namespace HangMan
         {
             switch (input)
             {
-                case "top":
+                case Top:
                     {
                         this.ShowScoreboard();
                         break;
                     }
 
-                case "help":
+                case Hint:
                     {
                         this.Help();
                         break;
                     }
 
-                case "restart":
+                case Restart:
                     {
                         this.InitialiseNewGame();
                         break;
                     }
 
-                case "addword":
+                case Addword:
                     {
                         this.AddWord();
                         break;
@@ -206,7 +212,7 @@ namespace HangMan
 
                 default:
                     {
-                        Print.InvalidCommandMessage();
+                        Print.Writer(Print.InvalidCommandMessage());
                         break;
                     }
             }

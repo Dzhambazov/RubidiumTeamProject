@@ -4,6 +4,12 @@
 
     public static class Print
     {
+
+        public static void Writer(string str)
+        {
+            Console.WriteLine(str);
+        }
+
         public static void GameGuideMessage()
         {
             Console.WriteLine(new string('-', 20) + Environment.NewLine + "Game commands:" + 
@@ -13,24 +19,28 @@
                 Environment.NewLine + new string('-', 79));
         }
 
-        public static void WelcomeMessage()
+        public static string WelcomeMessage()
         {
-            Console.WriteLine("Welcome to Hangman");
+            string message = "Welcome to Hangman";
+            return message;
         }
 
-        public static void GoodByeMessage()
+        public static string GoodByeMessage()
         {
-            Console.WriteLine("GoodBye");
+            string message= "GoodBye";
+            return message;
         }
 
-        public static void EnterLetterOrCommandMessage()
+        public static string EnterLetterOrCommandMessage()
         {
-            Console.Write("Enter letter or command: ");
+            string message = "Enter letter or command: ";
+            return message;
         }
 
-        public static void InvalidCommandMessage()
+        public static string InvalidCommandMessage()
         {
-            Console.WriteLine("Invalid Command!");
+            string message = "Invalid Command!";
+            return message;
         }
 
         public static void WordIsMessage()
