@@ -17,7 +17,7 @@ namespace HangMan
     {
 
         #region constants
-        const string Top = "top";
+        const string TOP = "top";
         const string Hint = "help";
         const string Restart = "restart";
         const string Addword = "addword";
@@ -189,7 +189,7 @@ namespace HangMan
         {
             switch (input)
             {
-                case Top:
+                case TOP:
                     {
                         this.ShowScoreboard();
                         break;
