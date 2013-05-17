@@ -43,7 +43,36 @@ namespace HangMan.Tests
             writer.Write(string.Empty);
             writer.Close();
         }
-        
+
+        [TestMethod]
+        public void ScoreBoardTestAddScoreWithExistingPlayer()
+        {
+
+            Player player = new Player("ExistingPlayer", 666);
+            ScoreBoard.AddScore(player);
+
+            StreamReader reader = new StreamReader(@"..\..\external files\Records.txt", true);
+            string allRecordsStr = reader.ReadToEnd();
+            string[] allRecordsArr = allRecordsStr.Split('\r');
+            int recordsCountBefore = allRecordsArr.Length;
+            reader.Close();
+
+            Player samePlayer = new Player("ExistingPlayer", 666);
+            ScoreBoard.AddScore(player);
+
+            reader = new StreamReader(@"..\..\external files\Records.txt", true);
+            allRecordsStr = reader.ReadToEnd();
+            allRecordsArr = allRecordsStr.Split('\r');
+            int recordsCountAfter = allRecordsArr.Length;
+            reader.Close();
+
+            Assert.AreEqual(recordsCountBefore, recordsCountAfter);
+
+            StreamWriter writer = new StreamWriter(@"..\..\external files\Records.txt");
+            writer.Write(string.Empty);
+            writer.Close();
+        }
+
         /// <summary>
         /// Testing adding null score record
         /// </summary>
