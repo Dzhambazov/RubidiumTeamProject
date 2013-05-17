@@ -4,7 +4,7 @@
 
     public static class Print
     {
-        public static void GameGuide()
+        public static void GameGuideMessage()
         {
             Console.WriteLine(new string('-', 20) + Environment.NewLine + "Game commands:" + 
                 Environment.NewLine + new string('-', 79));
@@ -13,54 +13,54 @@
                 Environment.NewLine + new string('-', 79));
         }
 
-        public static void Welcome()
+        public static void WelcomeMessage()
         {
             Console.WriteLine("Welcome to Hangman");
         }
 
-        public static void GoodBye()
+        public static void GoodByeMessage()
         {
             Console.WriteLine("GoodBye");
         }
 
-        public static void EnterLetterOrCommand()
+        public static void EnterLetterOrCommandMessage()
         {
             Console.Write("Enter letter or command: ");
         }
 
-        public static void InvalidCommand()
+        public static void InvalidCommandMessage()
         {
             Console.WriteLine("Invalid Command!");
         }
 
-        public static void WordIs()
+        public static void WordIsMessage()
         {
             Console.WriteLine();
             Console.Write("The secret word is:");
         }
 
-        public static void GuessedWord()
+        public static void GuessedWordMessage()
         {
             Console.WriteLine("Congratulations! You guessed the word");
         }
 
-        public static void MadeAScoreboard()
+        public static void MadeAScoreboardMessage()
         {
             Console.WriteLine("Congratulations! You made the scoreboard");
             Console.Write("Enter your name: ");
         }
 
-        public static void Cheated()
+        public static void CheatedMessage()
         {
             Console.WriteLine("You cheated !!!");
         }
 
-        public static void LetterNotFound()
+        public static void LetterNotFoundMessage()
         {
-            Console.WriteLine("Letter Not Found");
+            Console.WriteLine("Invalid symbol. Please type only latin letters.");
         }
 
-        public static void AddWord()
+        public static void AddWordMessage()
         {
             Console.Write("Please enter your word: ");
         }

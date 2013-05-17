@@ -51,10 +51,40 @@ namespace HangMan
         {
         }
 
+
+        #region public methods
+
+        /// <summary>
+        /// Game Engine that calls all the methods it needs
+        /// </summary>
+        public void Play()
+        {
+            this.GetWordsFromFile();
+            this.InitialiseNewGame();
+            Print.WelcomeMessage();
+            Print.GameGuideMessage();
+            this.PrintWord();
+            string input = this.GetInput();
+
+            while (input != "exit")
+            {
+                this.CheckInput(input);
+                Print.GameGuideMessage();
+                this.PrintWord();
+                input = this.GetInput();
+            }
+
+            Print.GoodByeMessage();
+        }
+
+        #endregion
+
+        #region Private methods
+
         /// <summary>
         /// Gets words from words.txt and push them all to array words
         /// </summary>
-        public void GetWordsFromFile()
+        private void GetWordsFromFile()
         {
             using (StreamReader reader = new StreamReader(@"..\..\external files\Words.txt", true))
             {
@@ -68,38 +98,9 @@ namespace HangMan
             }
         }
 
-        #region public methods
-
-        /// <summary>
-        /// Game Engine that calls all the methods it needs
-        /// </summary>
-        public void Play()
-        {
-            this.GetWordsFromFile();
-            this.InitialiseNewGame();
-            Print.Welcome();
-            Print.GameGuide();
-            this.PrintWord();
-            string input = this.GetInput();
-
-            while (input != "exit")
-            {
-                this.CheckInput(input);
-                Print.GameGuide();
-                this.PrintWord();
-                input = this.GetInput();
-            }
-
-            Print.GoodBye();
-        }
-
-        #endregion
-
-        #region Private methods
-
         #region Initialise
         /// <summary>
-        /// Initialise new game
+        /// Initialise new game, by setting everything at default state.
         /// </summary>
         private void InitialiseNewGame()
         {
@@ -166,7 +167,7 @@ namespace HangMan
         /// <returns>String representing player's input</returns>
         private string GetInput()
         {
-            Print.EnterLetterOrCommand();
+            Print.EnterLetterOrCommandMessage();
             string input = Console.ReadLine();
             return input;
         }
@@ -205,7 +206,7 @@ namespace HangMan
 
                 default:
                     {
-                        Print.InvalidCommand();
+                        Print.InvalidCommandMessage();
                         break;
                     }
             }
@@ -234,7 +235,7 @@ namespace HangMan
             }
             else
             {
-                Print.LetterNotFound();
+                Print.LetterNotFoundMessage();
                 this.mistakes++;
             }
 
@@ -269,7 +270,7 @@ namespace HangMan
         /// </summary>
         private void AddWord()
         {
-            Print.AddWord();
+            Print.AddWordMessage();
             string word = Console.ReadLine();
             if (word != string.Empty)
             {
@@ -288,7 +289,7 @@ namespace HangMan
         /// </summary>
         private void PrintWord()
         {
-            Print.WordIs();
+            Print.WordIsMessage();
             foreach (var letter in this.playersWord)
             {
                 Console.Write(letter + " ");
@@ -321,17 +322,17 @@ namespace HangMan
         /// </summary>
         private void End()
         {
-            Print.GuessedWord();
+            Print.GuessedWordMessage();
             if (!this.cheated)
             {
-                Print.MadeAScoreboard();
+                Print.MadeAScoreboardMessage();
                 string playerName = Console.ReadLine();
                 Player player = new Player(playerName, this.mistakes);
                 ScoreBoard.AddScore(player);
             }
             else
             {
-                Print.Cheated();
+                Print.CheatedMessage();
             }
 
             this.InitialiseNewGame();
