@@ -18,11 +18,11 @@ namespace HangMan
 
         #region constants
         const string TOP = "top";
-        const string Hint = "help";
-        const string Restart = "restart";
-        const string Addword = "addword";
-        const string Exit = "exit";
-        const char UnguestLetter = '_';
+        const string HINT = "help";
+        const string RESTART = "restart";
+        const string ADD_WORD = "addword";
+        const string EXIT = "exit";
+        const char UNGUEST_LETTER = '_';
         #endregion
 
         #region Fields
@@ -76,7 +76,7 @@ namespace HangMan
             this.PrintWord();
             string input = this.GetInput();
 
-            while (input != Exit)
+            while (input != EXIT)
             {
                 this.CheckInput(input);
                 Print.GameGuideMessage();
@@ -140,7 +140,7 @@ namespace HangMan
 
             for (int i = 0; i < this.playersWord.Length; i++)
             {
-                this.playersWord[i] = UnguestLetter;
+                this.playersWord[i] = UNGUEST_LETTER;
             }
         }
 
@@ -195,19 +195,19 @@ namespace HangMan
                         break;
                     }
 
-                case Hint:
+                case HINT:
                     {
                         this.Help();
                         break;
                     }
 
-                case Restart:
+                case RESTART:
                     {
                         this.InitialiseNewGame();
                         break;
                     }
 
-                case Addword:
+                case ADD_WORD:
                     {
                         this.AddWord();
                         break;
@@ -262,7 +262,7 @@ namespace HangMan
             int counter = 0;
             for (int i = 0; i < this.wordToGuess.Length; i++)
             {
-                if (this.wordToGuess[i] == letter && this.playersWord[i] == UnguestLetter)
+                if (this.wordToGuess[i] == letter && this.playersWord[i] == UNGUEST_LETTER)
                 {
                     this.playersWord[i] = letter;
                     counter++;
@@ -313,7 +313,7 @@ namespace HangMan
         /// </summary>
         private void Help()
         {
-            int toBeRevealed = Array.IndexOf(this.playersWord, UnguestLetter);
+            int toBeRevealed = Array.IndexOf(this.playersWord, UNGUEST_LETTER);
             this.playersWord[toBeRevealed] = this.wordToGuess[toBeRevealed];
             this.cheated = true;
             this.lettersLeft--;

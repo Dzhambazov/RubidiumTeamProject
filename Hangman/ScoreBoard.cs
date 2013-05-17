@@ -48,7 +48,7 @@ namespace HangMan
             GetAllRecords();
             int recordsLength = 5;
 
-            if (allRecords.Count() < 5)
+            if (allRecords.Count() < recordsLength)
             {
                 recordsLength = allRecords.Count();
             }
