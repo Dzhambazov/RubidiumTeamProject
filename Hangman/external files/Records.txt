@@ -1,18 +1,4 @@
-Petar Ivanov - 0
-Player - 0
-MnooLud - 1
-Petar Ivanov - 1
-Djambazov - 2
-Test - 3
-ddf - 4
 Gogeto - 4
-Ludak - 5
-Stancho - 6
-NewPlayer - 7
-far - 9
-InsanePlayer - 9
-Ludak - 9
-Gosho - 10
-yeahoo - 13
+Ludak - 4
 manchev - 15
 Pesho - 22

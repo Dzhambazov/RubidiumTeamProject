@@ -16,11 +16,14 @@ namespace HangMan
     public class Hangman
     {
 
-
+        #region constants
         const string Top = "top";
         const string Hint = "help";
         const string Restart = "restart";
         const string Addword = "addword";
+        const string Exit = "exit";
+        const char UnguestLetter = '_';
+        #endregion
 
         #region Fields
         /// <summary>
@@ -73,7 +76,7 @@ namespace HangMan
             this.PrintWord();
             string input = this.GetInput();
 
-            while (input != "exit")
+            while (input != Exit)
             {
                 this.CheckInput(input);
                 Print.GameGuideMessage();
@@ -137,7 +140,7 @@ namespace HangMan
 
             for (int i = 0; i < this.playersWord.Length; i++)
             {
-                this.playersWord[i] = '_';
+                this.playersWord[i] = UnguestLetter;
             }
         }
 
@@ -259,7 +262,7 @@ namespace HangMan
             int counter = 0;
             for (int i = 0; i < this.wordToGuess.Length; i++)
             {
-                if (this.wordToGuess[i] == letter && this.playersWord[i] == '_')
+                if (this.wordToGuess[i] == letter && this.playersWord[i] == UnguestLetter)
                 {
                     this.playersWord[i] = letter;
                     counter++;
@@ -310,7 +313,7 @@ namespace HangMan
         /// </summary>
         private void Help()
         {
-            int toBeRevealed = Array.IndexOf(this.playersWord, '_');
+            int toBeRevealed = Array.IndexOf(this.playersWord, UnguestLetter);
             this.playersWord[toBeRevealed] = this.wordToGuess[toBeRevealed];
             this.cheated = true;
             this.lettersLeft--;
